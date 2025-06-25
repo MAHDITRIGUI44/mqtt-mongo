@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from datetime import datetime
 
 # MongoDB Atlas setup
-MONGO_URI = "mongodb+srv://espuser:esp1234@cluster0.xxxxxx.mongodb.net/solar_project?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://espuser:esp1234@cluster0.begt1b2.mongodb.net/solar_project?retryWrites=true&w=majority"
 mongo_client = MongoClient(MONGO_URI)
 collection = mongo_client["solar_project"]["sensor_data"]
 
