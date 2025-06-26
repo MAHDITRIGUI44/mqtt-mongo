@@ -29,7 +29,6 @@ def on_message(client, userdata, msg):
         payload = msg.payload.decode()
         data = json.loads(payload)
 
-        # Add timestamp if not provided
         if "timestamp" not in data:
             data["timestamp"] = datetime.now(timezone.utc).isoformat()
 
@@ -38,13 +37,12 @@ def on_message(client, userdata, msg):
     except Exception as e:
         print("❌ Error processing message:", e)
 
-# Setup MQTT client with correct version
-client = mqtt.Client(callback_api_version=mqtt.MQTTv311)
+# MQTT client setup
+client = mqtt.Client()  # ✅ Corrigé ici
 client.username_pw_set(MQTT_USER, MQTT_PASSWORD)
-client.tls_set()  # Enable TLS encryption
+client.tls_set()  # TLS SSL
 client.on_connect = on_connect
 client.on_message = on_message
 
-# Connect to MQTT broker and start loop
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 client.loop_forever()
